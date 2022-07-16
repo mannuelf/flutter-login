@@ -8,17 +8,26 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
+  @override
   Widget build(context) {
     return Container(
-        margin: EdgeInsets.all(20.0),
+        margin: const EdgeInsets.all(20.0),
         child: Form(
           child: Column(
-            children: [emailField(), passwordField(), submitButton()],
+            children: [emailField()],
           ),
         ));
   }
 
-  emailField() {}
-  passwordField() {}
-  submitButton() {}
+  Widget emailField() {
+    return TextFormField(
+      decoration: InputDecoration(
+        labelText: 'Email',
+        hintText: 'you@example.com',
+      ),
+    );
+  }
+
+  // Widget passwordField() {}
+  // Widget submitButton() {}
 }
