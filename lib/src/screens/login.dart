@@ -13,8 +13,12 @@ class LoginScreenState extends State<LoginScreen> {
         margin: EdgeInsets.all(20.0),
         child: Form(
           child: Column(
-            children: [],
+            children: [emailField(), passwordField(), submitButton()],
           ),
         ));
   }
+
+  emailField() {}
+  passwordField() {}
+  submitButton() {}
 }
