@@ -14,20 +14,28 @@ class LoginScreenState extends State<LoginScreen> {
         margin: const EdgeInsets.all(20.0),
         child: Form(
           child: Column(
-            children: [emailField()],
+            children: [emailField(), passwordField()],
           ),
         ));
   }
 
   Widget emailField() {
     return TextFormField(
-      decoration: InputDecoration(
-        labelText: 'Email',
+      keyboardType: TextInputType.emailAddress,
+      decoration: const InputDecoration(
+        labelText: 'Add Email',
         hintText: 'you@example.com',
       ),
     );
   }
 
-  // Widget passwordField() {}
+  Widget passwordField() {
+    return TextFormField(
+      obscureText: true,
+      decoration: const InputDecoration(
+          labelText: 'Enter Password', hintText: 'Password'),
+    );
+  }
+
   // Widget submitButton() {}
 }
