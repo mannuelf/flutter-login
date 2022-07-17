@@ -10,11 +10,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(context) {
     return Container(
         margin: const EdgeInsets.all(20.0),
         child: Form(
+          key: _formKey,
           child: Column(
             children: <Widget>[
               emailField(),
@@ -33,7 +36,16 @@ class LoginScreenState extends State<LoginScreen> {
         decoration: const InputDecoration(
           labelText: 'Add Email',
           hintText: 'you@example.com',
-        ));
+        ),
+        validator: (String? value) {
+          if (value == null || value.isEmpty) {
+            return 'Email cannot be empty.';
+          }
+          if (!value.contains('@')) {
+            return 'Please enter a valid email.';
+          }
+          return null;
+        });
   }
 
   Widget passwordField() {
@@ -41,6 +53,15 @@ class LoginScreenState extends State<LoginScreen> {
       obscureText: true,
       decoration: const InputDecoration(
           labelText: 'Enter Password', hintText: 'Password'),
+      validator: (String? value) {
+        if (value == null || value.isEmpty) {
+          return 'Password cannot be empty.';
+        }
+        if (value.length < 4) {
+          return 'Password must be at least 4 characters long.';
+        }
+        return null;
+      },
     );
   }
 
@@ -48,7 +69,10 @@ class LoginScreenState extends State<LoginScreen> {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
             primary: Colors.blue, onPrimary: Colors.white),
-        onPressed: (() => print('submitting')),
+        onPressed: () {
+          print(_formKey.currentState?.validate());
+          _formKey.currentState?.validate();
+        },
         child: const Text('Submit'));
   }
 }
