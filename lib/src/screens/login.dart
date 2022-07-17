@@ -32,20 +32,24 @@ class LoginScreenState extends State<LoginScreen> {
 
   Widget emailField() {
     return TextFormField(
-        keyboardType: TextInputType.emailAddress,
-        decoration: const InputDecoration(
-          labelText: 'Add Email',
-          hintText: 'you@example.com',
-        ),
-        validator: (String? value) {
-          if (value == null || value.isEmpty) {
-            return 'Email cannot be empty.';
-          }
-          if (!value.contains('@')) {
-            return 'Please enter a valid email.';
-          }
-          return null;
-        });
+      keyboardType: TextInputType.emailAddress,
+      decoration: const InputDecoration(
+        labelText: 'Add Email',
+        hintText: 'you@example.com',
+      ),
+      validator: (String? value) {
+        if (value == null || value.isEmpty) {
+          return 'Email cannot be empty.';
+        }
+        if (!value.contains('@')) {
+          return 'Please enter a valid email.';
+        }
+        return null;
+      },
+      onSaved: (String? value) {
+        print(value);
+      },
+    );
   }
 
   Widget passwordField() {
@@ -62,6 +66,9 @@ class LoginScreenState extends State<LoginScreen> {
         }
         return null;
       },
+      onSaved: (String? value) {
+        print(value);
+      },
     );
   }
 
@@ -70,8 +77,9 @@ class LoginScreenState extends State<LoginScreen> {
         style: ElevatedButton.styleFrom(
             primary: Colors.blue, onPrimary: Colors.white),
         onPressed: () {
-          print(_formKey.currentState?.validate());
-          _formKey.currentState?.validate();
+          if (_formKey.currentState!.validate()) {
+            _formKey.currentState!.save();
+          }
         },
         child: const Text('Submit'));
   }
