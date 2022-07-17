@@ -16,7 +16,7 @@ class LoginScreenState extends State<LoginScreen> {
         margin: const EdgeInsets.all(20.0),
         child: Form(
           child: Column(
-            children: [
+            children: <Widget>[
               emailField(),
               Container(margin: const EdgeInsets.only(top: 25.0)),
               passwordField(),
