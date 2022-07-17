@@ -12,6 +12,9 @@ class LoginScreen extends StatefulWidget {
 class LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
 
+  String email = '';
+  String password = '';
+
   @override
   Widget build(context) {
     return Container(
@@ -48,6 +51,7 @@ class LoginScreenState extends State<LoginScreen> {
       },
       onSaved: (String? value) {
         print(value);
+        email = value as String;
       },
     );
   }
@@ -66,8 +70,9 @@ class LoginScreenState extends State<LoginScreen> {
         }
         return null;
       },
-      onSaved: (String? value) {
+      onSaved: (value) {
         print(value);
+        password = value as String;
       },
     );
   }
@@ -79,6 +84,9 @@ class LoginScreenState extends State<LoginScreen> {
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             _formKey.currentState!.save();
+            // post data to some API
+            // by this time email an password have been updated
+            print('Submitting $email and $password');
           }
         },
         child: const Text('Submit'));
